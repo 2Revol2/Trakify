@@ -1,0 +1,33 @@
+@use '../../../styles/variables.scss';
+.welcome {
+  padding: 6.25rem 0;
+  text-align: center;
+}
+.welcomeWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3.125rem;
+}
+.welcomeTitle {
+  font-size: 2.25rem;
+  color: #333333;
+  font-weight: bold;
+}
+.welcomeButton {
+  display: inline-block;
+  background-color: variables.$primary-color;
+  padding: 0.625rem 5rem;
+  font-size: 1rem;
+  color: #fff;
+  outline: none;
+  border: none;
+  font-weight: bold;
+  letter-spacing: .125rem;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: variables.$primary-hover; 
+    transform: scale(1.05);
+  }
+}

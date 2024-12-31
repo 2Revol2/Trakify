@@ -1,0 +1,48 @@
+@use '../../styles/variables.scss';
+.header {
+  background-color: variables.$light-color;
+  padding: 1.25rem 1.25rem;
+  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.1);
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+}
+.title {
+  font-size: 1.875rem;
+  font-weight: 500;
+  transition: all ease 0.2s;
+  color: variables.$primary-color;
+  cursor: pointer;
+  text-shadow: .0625rem .0625rem .1875rem rgba(0, 0, 0, 0.2)
+}
+.navElement {
+  width: 85%;
+}
+.navList {
+  display: flex;
+  gap: 3.125rem;
+}
+
+.link {
+  padding: .3125rem 0;
+  color: variables.$text-color;
+  cursor: pointer;
+  &:hover {
+    color: variables.$primary-text-hover;
+  }
+}
+.active {
+  color: variables.$primary-text-hover;
+}
+.userProfile {
+    border: .0625rem solid #000;
+    padding: .375rem .625rem ;
+    border-radius: 50%;
+    cursor: pointer;
+    img {
+        width: 1.875rem;
+    }
+}
