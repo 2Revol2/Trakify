@@ -1,7 +1,8 @@
 import style from "./Login.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router";
-import { URL_LINK } from "../../../Shared/Consts";
+import { USER_INFO } from "../../../Shared/Consts";
+import { HText } from "../../../Shared/HText/HText";
 type loginForm = {
   email: string;
   password: string;
@@ -15,7 +16,7 @@ export const Login = () => {
   const onSubmit: SubmitHandler<loginForm> = async (data) => {
     const { email, password } = data;
     try {
-      const response = await fetch(URL_LINK);
+      const response = await fetch(USER_INFO);
       const users = await response.json();
       const user = users.find(
         (user: { email: string; password: string }) =>
@@ -31,7 +32,7 @@ export const Login = () => {
   return (
     <div className={style.wrapper}>
       <div>
-        <p className={style.title}>Ввойти в аккаунт</p>
+        <HText>Ввойти в аккаунт</HText>
         <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
           <input
             type="text"

@@ -1,1 +1,1 @@
-export const URL_LINK = ('http://localhost:3001/users')
+export const USER_INFO= ('http://localhost:3001/users')
