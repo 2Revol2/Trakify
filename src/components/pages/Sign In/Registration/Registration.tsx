@@ -20,7 +20,7 @@ export const Registration = () => {
     try {
       if (data.password === data.passwordAgain) {
         const { passwordAgain, ...dataToSend } = data;
-        const response = await fetch(USER_INFO, {
+        await fetch(USER_INFO, {
           method: "POST",
           body: JSON.stringify(dataToSend),
         });

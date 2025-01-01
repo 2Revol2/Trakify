@@ -1,0 +1,78 @@
+@use "../../../styles/variables.scss";
+.wrapper {
+  display: flex;
+  margin: 1.25rem;
+  gap: 3.125rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.habitList {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.25rem;
+  padding: 1.25rem;
+}
+
+.habitWrapper {
+  background-color: variables.$light-color;
+  border-radius: .75rem;
+  box-shadow: 0 .25rem .625rem rgba(0, 0, 0, 0.1);
+  word-break: break-all;
+  padding: 1.25rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0 .375rem .9375rem rgba(0, 0, 0, 0.2);
+  }
+}
+
+.habitHeader {
+  .habitName {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    margin-bottom: .625rem;
+    font-weight: bold;
+    color: variables.$primary-color;
+  }
+
+  .habitMotivation {
+    font-size: .875rem;
+    color: variables.$text-color;
+    margin-bottom: .625rem;
+  }
+}
+
+.description {
+  font-size: .75rem;
+  color: variables.$text-color;
+  margin-bottom: .3125rem;
+  font-weight: bold;
+}
+.habitBtn {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: .625rem;
+  button {
+    padding: 0.625rem;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 0.3125rem;
+    font-size: 1rem;
+  }
+}
+
+.editBtn {
+ background-color: variables.$primary-text-hover;
+}
+.deleteBtn {
+  background-color:  tomato;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: red;
+  }
+}

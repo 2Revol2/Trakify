@@ -5,12 +5,6 @@
       "nickname": "test",
       "email": "test@test.com",
       "password": "password123"
-    },
-    {
-      "id": "1666",
-      "nickname": "zxcasd",
-      "email": "asdqweu@gmail.com",
-      "password": "asdasd"
     }
   ]
 }

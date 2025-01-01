@@ -25,10 +25,10 @@ export const AddHabit = () => {
         <HText>Добавить привычку</HText>
       </div>
       <div className={style.habbitWrapper}>
-        <form onSubmit={(event) => submitHandler(event)}>
-          <p>Введите название привычки</p>
+        <form className={style.form} onSubmit={(event) => submitHandler(event)}>
+          <p>Введите привычку</p>
           <input type="text" />
-          <p>Мотивация выполнения для себя в будущем</p>
+          <p>Цель</p>
           <textarea cols={50} rows={10} />
           <ActionBtn>Создать привычку</ActionBtn>
         </form>

@@ -1,31 +1,71 @@
-@use '../../../styles/variables.scss';
+@use "../../../styles/variables.scss";
+
 .wrapper {
-    display: flex;
-    margin: 1.25rem;
-    gap: 3.125rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.25rem;
+  gap: 3.125rem;
+  justify-content: center;
 }
+
 .habbitWrapper {
-    border: .0625rem solid #000;
-    padding: 1.25rem;
-    width: 50%;
+  background-color: variables.$light-color;
+  border-radius: .75rem;
+  box-shadow: 0 .25rem .625rem rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 100%;
+  max-width: 37.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
+
 .addButton {
-    display: block;
-    
+  display: block;
+  margin-top: 1.25rem;
+  background-color: variables.$primary-color;
+  color: variables.$light-color;
+  padding: .625rem 1.25rem;
+  border-radius: 1.875rem;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: variables.$primary-hover;
+  }
 }
-form {
-    p {
-        color: variables.$text-color;
-        font-size: 1.25rem;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  p {
+    color: variables.$text-color;
+    font-size: 1.25rem;
+    margin-bottom: .5rem;
+  }
+
+  textarea,
+  input {
+    resize: none;
+    outline: none;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: .625rem;
+    font-size: 1rem;
+    color: variables.$text-color;
+    transition: border-color 0.3s;
+    &:focus {
+      border-color: variables.$primary-color;
     }
-    textarea, input{
-        resize: none;
-        outline: none;
-    }
-    textarea {
-        padding: .625rem;
-    }
-    input {
-        padding: .3125rem .4375rem;
-    }
+  }
+
+  input {
+    padding: .3125rem .4375rem;
+  }
+
+  textarea {
+    max-height: 12.5rem;
+  }
 }
