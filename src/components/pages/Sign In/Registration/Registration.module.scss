@@ -1,0 +1,41 @@
+@use '../../../../styles/variables.scss';
+.wrapper {
+  padding: 6.25rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 25rem;
+  input {
+    outline: none;
+    padding: 0.625rem;
+    margin: .625rem 0;
+    border: none;
+    border-radius: 5px;
+    &:focus {
+      border: 1px solid variables.$primary-color;
+    }
+  }
+  button {
+    display: inline-block;
+    padding: 0.625rem;
+    background-color: variables.$primary-color;
+    border: none;
+    border-radius: 0.3125rem;
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+      background-color: variables.$primary-hover;
+    }
+  }
+}
+.warning {
+  color: red;
+  font-size: .75rem;
+  padding-left: .3125rem;
+}
