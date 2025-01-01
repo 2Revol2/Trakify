@@ -19,20 +19,6 @@
       border: 1px solid variables.$primary-color;
     }
   }
-  button {
-    display: inline-block;
-    padding: 0.625rem;
-    background-color: variables.$primary-color;
-    border: none;
-    border-radius: 0.3125rem;
-    font-size: 1rem;
-    color: #fff;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    &:hover {
-      background-color: variables.$primary-hover;
-    }
-  }
 }
 .warning {
   color: red;

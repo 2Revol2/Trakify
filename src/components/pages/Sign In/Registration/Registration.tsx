@@ -2,6 +2,8 @@ import { HText } from "../../../Shared/HText/HText";
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./Registration.module.scss";
 import { USER_INFO } from "../../../Shared/Consts";
+import { ActionBtn } from "../../../Shared/ActionBtn/ActionBtn";
+
 type loginForm = {
   nickname: string;
   email: string;
@@ -65,7 +67,7 @@ export const Registration = () => {
             min: 5,
           })}
         />
-        <button type="submit">Создать аккаунт</button>
+        <ActionBtn>Создать аккаунт</ActionBtn>
       </form>
     </div>
   );

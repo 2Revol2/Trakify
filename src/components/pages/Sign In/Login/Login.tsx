@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router";
 import { USER_INFO } from "../../../Shared/Consts";
 import { HText } from "../../../Shared/HText/HText";
+import { ActionBtn } from "../../../Shared/ActionBtn/ActionBtn";
 type loginForm = {
   email: string;
   password: string;
@@ -59,7 +60,7 @@ export const Login = () => {
           <Link className={style.link} to="/registration">
             Создать аккаунт
           </Link>
-          <button type="submit">Ввойти</button>
+          <ActionBtn>Ввойти</ActionBtn>
         </form>
       </div>
     </div>
