@@ -30,9 +30,10 @@ export const AllHabit = () => {
   return (
     <div className={style.wrapper}>
       <div>
-        <HText>Список привычек</HText>
+      {habits.length === 0 ? <HText>Добавьте привычку</HText> : <HText>Список привычек</HText>}
       </div>
       <div className={style.habitList}>
+      
         {habits.map((habit, index) => {
           return (
             <div key={index} className={style.habitWrapper}>

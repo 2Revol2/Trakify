@@ -68,6 +68,10 @@
 
 .editBtn {
  background-color: variables.$primary-text-hover;
+ transition: all 0.3s ease;
+ &:hover {
+  background-color: rgb(0, 137, 250);
+ }
 }
 .deleteBtn {
   background-color:  tomato;

@@ -8,7 +8,10 @@ export const AddHabit = () => {
     const habitName = (form.elements[0] as HTMLInputElement).value;
     const habitMotivation = (form.elements[1] as HTMLInputElement).value;
     console.log(form.elements);
-    
+    if (habitName.length === 0) {
+      alert("Введите привычку");
+      return;
+    }
     const currentHabits = JSON.parse(localStorage.getItem("habits") || "[]");
 
     const updatedHabits = [
