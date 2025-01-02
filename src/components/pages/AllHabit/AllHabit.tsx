@@ -5,6 +5,8 @@ import { ActionBtn } from "../../Shared/ActionBtn/ActionBtn";
 type HabitsType = {
   name: string;
   motivation: string;
+  streak?: number;
+  lastDay?: number;
 };
 
 export const AllHabit = () => {
@@ -38,16 +40,32 @@ export const AllHabit = () => {
     setEditHabit(habits[index]);
     setEdit(!edit);
   }
+  const updatedHabits = [...habits];
+
   function saveEditHabitHandler() {
     if (editIndex === null) return;
-    const updatedHabits = [...habits];
     updatedHabits[editIndex] = editHabit;
     setHabits(updatedHabits);
-
     localStorage.setItem("habits", JSON.stringify(updatedHabits));
     setEditIndex(null);
     setEdit(false);
   }
+  const [streak, setStreak] = useState<number>(0);
+
+  function dayStreack(index: number) {
+    const today = new Date();
+    const habit = updatedHabits[index]
+    const currentDay = today.getDate();
+    if (habit.lastDay !== currentDay) {
+      habit.streak = (habit.streak || 0) + 1; 
+      habit.lastDay = today.getDate(); 
+      const count = streak + 1
+      setStreak(count)
+      setHabits(updatedHabits)
+      localStorage.setItem("habits", JSON.stringify(updatedHabits))
+    }
+  }
+
   return (
     <div className={style.wrapper}>
       <div>
@@ -92,13 +110,19 @@ export const AllHabit = () => {
                   <p className={style.habitMotivation}>{habit.motivation}</p>
                 )}
               </div>
+              <p className={style.description}>
+                Ударный режим(можно отметить только один раз в день)
+              </p>
+              <p className={style.streak}>{updatedHabits[index].streak}</p>
               <div className={style.habitBtn}>
                 {isEditing ? (
                   <ActionBtn onClick={saveEditHabitHandler}>
                     Сохранить
                   </ActionBtn>
                 ) : (
-                  <ActionBtn>Отметить</ActionBtn>
+                  <ActionBtn onClick={() => dayStreack(index)}>
+                    Отметить
+                  </ActionBtn>
                 )}
                 {isEditing ? (
                   <button

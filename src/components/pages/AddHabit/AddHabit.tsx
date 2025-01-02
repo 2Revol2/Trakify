@@ -16,7 +16,7 @@ export const AddHabit = () => {
 
     const updatedHabits = [
       ...currentHabits,
-      { name: habitName, motivation: habitMotivation },
+      { name: habitName, motivation: habitMotivation, streak: 0, lastDay: 0 },
     ];
     localStorage.setItem("habits", JSON.stringify(updatedHabits));
     form.reset();
