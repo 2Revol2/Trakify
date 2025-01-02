@@ -1,11 +1,14 @@
-import { ReactNode } from "react"
-import style from "./ActionBtn.module.scss"
+import { ReactNode } from "react";
+import style from "./ActionBtn.module.scss";
 type Props = {
-    children: ReactNode
-}
+  onClick?: () => void;
+  children: ReactNode;
+};
 
-export const ActionBtn = ({children}:Props) => {
+export const ActionBtn = ({ onClick, children }: Props) => {
   return (
-    <button className={style.button}>{children}</button>
-  )
-}
+    <button onClick={onClick} className={style.button}>
+      {children}
+    </button>
+  );
+};
