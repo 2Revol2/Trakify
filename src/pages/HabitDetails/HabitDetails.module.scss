@@ -1,0 +1,13 @@
+@use '../../styles/variables.scss';
+.wrapper {
+    padding: 1.25rem;
+}
+.header {
+    margin-bottom: 1.25rem;
+}
+
+.contentWrap {
+    display: grid;
+    grid-template-columns: 2fr 1fr 5fr;
+    gap: 3.125rem;
+}

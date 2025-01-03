@@ -5,6 +5,7 @@ import { Login } from "./pages/Auth/Login/Login";
 import { Registration } from "./pages/Auth/Registration/Registration";
 import { AddHabit } from "./pages/AddHabit/AddHabit";
 import { AllHabit } from "./pages/AllHabit/AllHabit";
+import { HabitDetails } from "./pages/HabitDetails/HabitDetails";
 export const App = () => {
   return (
     <div className="app">
@@ -16,6 +17,7 @@ export const App = () => {
         <Route path="/profile" />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
+        <Route path="/habit/:name" element={<HabitDetails />} />
       </Routes>
     </div>
   );

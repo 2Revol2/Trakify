@@ -27,3 +27,12 @@
     background-color: red;
   }
 }
+.details {
+  background-color: variables.$background-color;
+  color:  variables.$text-color;
+  font-weight: bold;
+  &:hover {
+    background-color: variables.$primary-text-hover;
+    color: #fff;
+  }
+}

@@ -3,12 +3,8 @@ import { Title } from "../../components/Title/Title";
 import style from "./AllHabit.module.scss";
 import { Button } from "../../components/Button/Button";
 import { EditHabitInput } from "../../components/EditHabitInput/EditHabitInput";
-type HabitsType = {
-  name: string;
-  motivation: string;
-  streak?: number;
-  lastDay?: number;
-};
+import { useNavigate } from "react-router";
+import { HabitsType } from "../../Shared/Types";
 
 export const AllHabit = () => {
   const [habits, setHabits] = useState<HabitsType[]>([]);
@@ -41,9 +37,9 @@ export const AllHabit = () => {
     setEditHabit(habits[index]);
     setEdit(!edit);
   }
-  const updatedHabits = [...habits];
-  
+
   function saveEditHabitHandler() {
+    const updatedHabits = [...habits];
     if (editIndex === null) return;
     updatedHabits[editIndex] = editHabit;
     setHabits(updatedHabits);
@@ -53,19 +49,31 @@ export const AllHabit = () => {
   }
   const [streak, setStreak] = useState<number>(0);
 
-  function dayStreack(index: number) {
-    const today = new Date();
-    const habit = updatedHabits[index];
-    const currentDay = today.getDate();
-    if (habit.lastDay !== currentDay) {
-      habit.streak = (habit.streak || 0) + 1;
-      habit.lastDay = today.getDate();
-      const count = streak + 1;
-      setStreak(count);
-      setHabits(updatedHabits);
-      localStorage.setItem("habits", JSON.stringify(updatedHabits));
-    }
+  function dayStreak(habitName: string) {
+    const habitsData: HabitsType[] = JSON.parse(
+      localStorage.getItem("habits") || "[]"
+    );
+    const today = new Date().toISOString().split("T")[0];
+    const updatedHabits = habitsData.map((habit: HabitsType) => {
+      if (habit.name === habitName) {
+        if (habit.lastDay !== today) {
+          habit.streak = (habit.streak || 0) + 1;
+          const count = streak + 1;
+          habit.lastDay = today;
+          if (!habit.completeDays) {
+            habit.completeDays = [];
+          }
+          habit.completeDays.push(today);
+          setStreak(count);
+        }
+      }
+
+      return habit;
+    });
+    localStorage.setItem("habits", JSON.stringify(updatedHabits));
+    setHabits(updatedHabits)
   }
+  const navigate = useNavigate();
 
   return (
     <div className={style.wrapper}>
@@ -82,18 +90,35 @@ export const AllHabit = () => {
           return (
             <div key={index} className={style.habitWrapper}>
               <div className={style.habitHeader}>
-                <p className={style.description}>Привычка</p>
-                {isEditing ? (
-                  <EditHabitInput
-                    variants="editHabitName"
-                    value={editHabit.name}
-                    onChange={(event) =>
-                      setEditHabit({ ...editHabit, name: event.target.value })
-                    }
-                  />
-                ) : (
-                  <h3 className={style.habitName}>{habit.name}</h3>
-                )}
+                <div className={style.habitFlex}>
+                  <div>
+                    <p className={style.description}>Привычка</p>
+                    {isEditing ? (
+                      <EditHabitInput
+                        variants="editHabitName"
+                        value={editHabit.name}
+                        onChange={(event) =>
+                          setEditHabit({
+                            ...editHabit,
+                            name: event.target.value,
+                          })
+                        }
+                      />
+                    ) : (
+                      <h3 className={style.habitName}>{habit.name}</h3>
+                    )}
+                  </div>
+                  {isEditing ? (
+                    ""
+                  ) : (
+                    <Button
+                      variants="details"
+                      onClick={() => navigate(`/habit/${habit.name}`)}
+                    >
+                      Детали
+                    </Button>
+                  )}
+                </div>
                 <p className={style.description}>Цель</p>
                 {isEditing ? (
                   <EditHabitInput
@@ -120,27 +145,33 @@ export const AllHabit = () => {
                     Сохранить
                   </Button>
                 ) : (
-                  <Button variants="default" onClick={() => dayStreack(index)}>
+                  <Button
+                    variants="default"
+                    onClick={() => dayStreak(habit.name)}
+                  >
                     Отметить
                   </Button>
                 )}
                 {isEditing ? (
                   <Button
                     variants="edit"
-                    onClick={() => editHabitHandler(index)}>
+                    onClick={() => editHabitHandler(index)}
+                  >
                     Отмена
                   </Button>
                 ) : (
                   <Button
                     variants="edit"
-                    onClick={() => editHabitHandler(index)}>
+                    onClick={() => editHabitHandler(index)}
+                  >
                     Редактировать
                   </Button>
                 )}
                 {isEditing ? null : (
                   <Button
                     variants="delete"
-                    onClick={() => deleteHandler(habit)}>
+                    onClick={() => deleteHandler(habit)}
+                  >
                     Удалить
                   </Button>
                 )}
