@@ -1,0 +1,11 @@
+@use '../../styles/variables.scss';
+.authInput {
+  outline: none;
+  padding: 0.625rem;
+  margin: 0.625rem 0;
+  border: none;
+  border-radius: .3125rem;
+  &:focus {
+    border: .0625rem solid variables.$primary-color;
+  }
+}

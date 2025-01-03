@@ -1,0 +1,15 @@
+@use '../../styles/variables.scss';
+.edit {
+  margin-bottom: 0.625rem;
+  outline: none;
+  border: none;
+  box-shadow: 0 0 0.4375rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.125rem;
+  padding-left: 0.125rem;
+}
+.editHabitName {
+  text-transform: uppercase;
+  color: variables.$primary-color;
+  font-weight: bold;
+  font-size: 1.5rem;
+}

@@ -1,6 +1,6 @@
-import { HText } from "../../Shared/HText/HText";
+import { Title } from "../../components/Title/Title";
 import style from "./AddHabit.module.scss";
-import { ActionBtn } from "../../Shared/ActionBtn/ActionBtn";
+import { Button } from "../../components/Button/Button";
 export const AddHabit = () => {
   function submitHandler(e: React.FormEvent) {
     e.preventDefault();
@@ -25,7 +25,7 @@ export const AddHabit = () => {
   return (
     <div className={style.wrapper}>
       <div>
-        <HText>Добавить привычку</HText>
+        <Title>Добавить привычку</Title>
       </div>
       <div className={style.habbitWrapper}>
         <form className={style.form} onSubmit={(event) => submitHandler(event)}>
@@ -33,7 +33,7 @@ export const AddHabit = () => {
           <input type="text" />
           <p>Цель</p>
           <textarea cols={50} rows={10} />
-          <ActionBtn>Создать привычку</ActionBtn>
+          <Button variants="default">Создать привычку</Button>
         </form>
       </div>
     </div>

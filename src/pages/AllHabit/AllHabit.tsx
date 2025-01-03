@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { HText } from "../../Shared/HText/HText";
+import { Title } from "../../components/Title/Title";
 import style from "./AllHabit.module.scss";
-import { ActionBtn } from "../../Shared/ActionBtn/ActionBtn";
+import { Button } from "../../components/Button/Button";
+import { EditHabitInput } from "../../components/EditHabitInput/EditHabitInput";
 type HabitsType = {
   name: string;
   motivation: string;
@@ -41,7 +42,7 @@ export const AllHabit = () => {
     setEdit(!edit);
   }
   const updatedHabits = [...habits];
-
+  
   function saveEditHabitHandler() {
     if (editIndex === null) return;
     updatedHabits[editIndex] = editHabit;
@@ -54,15 +55,15 @@ export const AllHabit = () => {
 
   function dayStreack(index: number) {
     const today = new Date();
-    const habit = updatedHabits[index]
+    const habit = updatedHabits[index];
     const currentDay = today.getDate();
     if (habit.lastDay !== currentDay) {
-      habit.streak = (habit.streak || 0) + 1; 
-      habit.lastDay = today.getDate(); 
-      const count = streak + 1
-      setStreak(count)
-      setHabits(updatedHabits)
-      localStorage.setItem("habits", JSON.stringify(updatedHabits))
+      habit.streak = (habit.streak || 0) + 1;
+      habit.lastDay = today.getDate();
+      const count = streak + 1;
+      setStreak(count);
+      setHabits(updatedHabits);
+      localStorage.setItem("habits", JSON.stringify(updatedHabits));
     }
   }
 
@@ -70,9 +71,9 @@ export const AllHabit = () => {
     <div className={style.wrapper}>
       <div>
         {habits.length === 0 ? (
-          <HText>Добавьте привычку</HText>
+          <Title>Добавьте привычку</Title>
         ) : (
-          <HText>Список привычек</HText>
+          <Title>Список привычек</Title>
         )}
       </div>
       <div className={style.habitList}>
@@ -83,8 +84,8 @@ export const AllHabit = () => {
               <div className={style.habitHeader}>
                 <p className={style.description}>Привычка</p>
                 {isEditing ? (
-                  <input
-                    className={`${style.edit} ${style.editName}`}
+                  <EditHabitInput
+                    variants="editHabitName"
                     value={editHabit.name}
                     onChange={(event) =>
                       setEditHabit({ ...editHabit, name: event.target.value })
@@ -93,11 +94,10 @@ export const AllHabit = () => {
                 ) : (
                   <h3 className={style.habitName}>{habit.name}</h3>
                 )}
-
                 <p className={style.description}>Цель</p>
                 {isEditing ? (
-                  <input
-                    className={style.edit}
+                  <EditHabitInput
+                    variants="editHabitMotivation"
                     value={editHabit.motivation}
                     onChange={(event) =>
                       setEditHabit({
@@ -113,39 +113,36 @@ export const AllHabit = () => {
               <p className={style.description}>
                 Ударный режим(можно отметить только один раз в день)
               </p>
-              <p className={style.streak}>{updatedHabits[index].streak}</p>
+              <p className={style.streak}>{habit.streak}</p>
               <div className={style.habitBtn}>
                 {isEditing ? (
-                  <ActionBtn onClick={saveEditHabitHandler}>
+                  <Button variants="default" onClick={saveEditHabitHandler}>
                     Сохранить
-                  </ActionBtn>
+                  </Button>
                 ) : (
-                  <ActionBtn onClick={() => dayStreack(index)}>
+                  <Button variants="default" onClick={() => dayStreack(index)}>
                     Отметить
-                  </ActionBtn>
+                  </Button>
                 )}
                 {isEditing ? (
-                  <button
-                    className={style.editBtn}
-                    onClick={() => editHabitHandler(index)}
-                  >
-                    Отменить
-                  </button>
+                  <Button
+                    variants="edit"
+                    onClick={() => editHabitHandler(index)}>
+                    Отмена
+                  </Button>
                 ) : (
-                  <button
-                    className={style.editBtn}
-                    onClick={() => editHabitHandler(index)}
-                  >
+                  <Button
+                    variants="edit"
+                    onClick={() => editHabitHandler(index)}>
                     Редактировать
-                  </button>
+                  </Button>
                 )}
                 {isEditing ? null : (
-                  <button
-                    onClick={() => deleteHandler(habit)}
-                    className={style.deleteBtn}
-                  >
+                  <Button
+                    variants="delete"
+                    onClick={() => deleteHandler(habit)}>
                     Удалить
-                  </button>
+                  </Button>
                 )}
               </div>
             </div>

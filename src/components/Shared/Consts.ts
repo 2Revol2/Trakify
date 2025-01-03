@@ -1,1 +1,0 @@
-export const USER_INFO= ('http://localhost:3001/users')

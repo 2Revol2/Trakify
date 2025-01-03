@@ -1,9 +1,9 @@
-import { HText } from "../../../Shared/HText/HText";
+import { Title } from "../../../components/Title/Title";
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./Registration.module.scss";
 import { USER_INFO } from "../../../Shared/Consts";
-import { ActionBtn } from "../../../Shared/ActionBtn/ActionBtn";
-
+import { Button } from "../../../components/Button/Button";
+import { AuthInput } from "../../../components/AuthInput/AuthInput";
 type loginForm = {
   nickname: string;
   email: string;
@@ -25,49 +25,63 @@ export const Registration = () => {
           body: JSON.stringify(dataToSend),
         });
       }
-    } catch (error) {}
+      else {
+        alert('Пароли не совпадают')
+      }
+    } catch (error) {
+    }
   };
   return (
     <div className={style.wrapper}>
       <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
-        <HText>Создать аккаунт</HText>
-        <input
+        <Title>Создать аккаунт</Title>
+        <AuthInput
+          name="nickname"
           type="text"
           placeholder="nickname"
-          {...register("nickname", {
+          register={register}
+          validationRules={{
             required: "This field is required",
-          })}
+          }}
         />
-        <input
+        <AuthInput
+          name="email"
           type="text"
           placeholder="email"
-          {...register("email", {
+          register={register}
+          validationRules={{
             required: "This field is required",
             pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-          })}
+          }}
         />
         {errors.email && (
           <p className={style.warning}>
             {errors.email.type === "pattern" && "Invalid email addres."}
           </p>
         )}
-        <input
+
+        <AuthInput
+          name="password"
           type="password"
           placeholder="password"
-          {...register("password", {
+          register={register}
+          validationRules={{
             required: "This field is required",
             min: 5,
-          })}
-        />{" "}
-        <input
+          }}
+        />
+        <AuthInput
+          name="passwordAgain"
           type="password"
           placeholder="password again"
-          {...register("passwordAgain", {
+          register={register}
+          validationRules={{
             required: "This field is required",
             min: 5,
-          })}
+          }}
         />
-        <ActionBtn>Создать аккаунт</ActionBtn>
+
+        <Button variants="default">Создать аккаунт</Button>
       </form>
     </div>
   );
