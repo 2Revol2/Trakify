@@ -5,7 +5,7 @@ import { Button } from "../../components/Button/Button";
 import { EditHabitInput } from "../../components/EditHabitInput/EditHabitInput";
 import { useNavigate } from "react-router";
 import { HabitsType } from "../../Shared/Types";
-
+import { DaysStreak } from "../../components/DaysStreak/DaysStreak";
 export const AllHabit = () => {
   const [habits, setHabits] = useState<HabitsType[]>([]);
   const [editIndex, setEditIndex] = useState<number | null>(null);
@@ -138,7 +138,7 @@ export const AllHabit = () => {
               <p className={style.description}>
                 Ударный режим(можно отметить только один раз в день)
               </p>
-              <p className={style.streak}>{habit.streak}</p>
+              <DaysStreak>{habit.streak}</DaysStreak>
               <div className={style.habitBtn}>
                 {isEditing ? (
                   <Button variants="default" onClick={saveEditHabitHandler}>
