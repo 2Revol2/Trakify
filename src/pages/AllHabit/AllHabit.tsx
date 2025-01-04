@@ -53,7 +53,7 @@ export const AllHabit = () => {
     const habitsData: HabitsType[] = JSON.parse(
       localStorage.getItem("habits") || "[]"
     );
-    const today = new Date().toISOString().split("T")[0];
+    const today = new Date().toLocaleDateString("en-CA"); 
     const updatedHabits = habitsData.map((habit: HabitsType) => {
       if (habit.name === habitName) {
         if (habit.lastDay !== today) {

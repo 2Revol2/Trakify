@@ -9,6 +9,7 @@ export const HabitDetails = () => {
     localStorage.getItem("habits") || "[]"
   );
   const habit = habitsData.find((habit) => habit.name === name);
+  const completedDays = habit?.completeDays || [];
 
   return (
     <div className={style.wrapper}>
@@ -16,8 +17,21 @@ export const HabitDetails = () => {
         <Title>{habit?.name}</Title>
       </div>
       <div className={style.contentWrap}>
-        <div><HabitCalendar/></div>
-        <div>2</div>
+        {/* 1 */}
+        <div>
+          <div>
+            <p>Календарь выполнения</p>
+            <HabitCalendar completedDays={completedDays} />
+          </div>
+        </div>
+        {/* 2 */}
+        <div>
+          <div>
+            <p>Ударный режим</p>
+            {habit?.streak}
+          </div>
+        </div>
+        {/* 3 */}
         <div>3</div>
       </div>
     </div>
