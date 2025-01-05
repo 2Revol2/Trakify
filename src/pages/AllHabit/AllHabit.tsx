@@ -136,7 +136,7 @@ export const AllHabit = () => {
                 )}
               </div>
               <p className={style.description}>
-                Ударный режим(можно отметить только один раз в день)
+              Дни выполнения (можно отметить только один раз в день)
               </p>
               <DaysStreak>{habit.streak}</DaysStreak>
               <div className={style.habitBtn}>

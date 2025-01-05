@@ -1,0 +1,19 @@
+@use '../../styles/variables.scss';
+.quoteContainer {
+  padding: 1.25rem;
+  text-align: center; 
+}
+
+.quoteText {
+  font-size: 1.25rem; 
+  font-style: italic; 
+  color: variables.$text-color; 
+  margin-bottom: 1.25rem; 
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem; 
+}
+
