@@ -1,21 +1,31 @@
 import style from "./Login.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, Navigate } from "react-router";
 import { USER_INFO } from "../../../Shared/Consts";
 import { Title } from "../../../components/Title/Title";
 import { Button } from "../../../components/Button/Button";
 import { AuthInput } from "../../../components/AuthInput/AuthInput";
+import { useState } from "react";
+type Props = {
+  setIsAuth: React.Dispatch<React.SetStateAction<boolean>>;
+};
 type loginForm = {
   email: string;
   password: string;
 };
 
-export const Login = () => {
+export const Login = ({ setIsAuth }: Props) => {
+  const [isAuth, setIsLocaleAuth] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<loginForm>();
+  } = useForm<loginForm>({
+    defaultValues: {
+      email: "test@test.com",
+      password: "password123",
+    },
+  });
 
   const onSubmit: SubmitHandler<loginForm> = async (data) => {
     const { email, password } = data;
@@ -27,11 +37,14 @@ export const Login = () => {
           user.email === email && user.password === password
       );
       if (user) {
-        console.log("Пользователь найден", user);
+        setIsLocaleAuth(true);
+        setIsAuth(true);
       } else {
         console.log("Неверный логин или пароль");
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className={style.wrapper}>
@@ -67,6 +80,7 @@ export const Login = () => {
             Создать аккаунт
           </Link>
           <Button variants="default">Ввойти</Button>
+          {isAuth && <Navigate to={'/add-habbit'}/>}
         </form>
       </div>
     </div>
