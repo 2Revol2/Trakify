@@ -28,7 +28,10 @@ export const Login = ({ setIsAuth }: Props) => {
   });
 
   const onSubmit: SubmitHandler<loginForm> = async (data) => {
+    setIsAuth(true)
+    setIsLocaleAuth(true)
     const { email, password } = data;
+ 
     try {
       const response = await fetch(USER_INFO);
       const users = await response.json();
@@ -37,8 +40,8 @@ export const Login = ({ setIsAuth }: Props) => {
           user.email === email && user.password === password
       );
       if (user) {
-        setIsLocaleAuth(true);
-        setIsAuth(true);
+        console.log("Пользователь найден", user);
+        
       } else {
         console.log("Неверный логин или пароль");
       }
