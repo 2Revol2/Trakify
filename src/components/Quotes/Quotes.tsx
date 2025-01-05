@@ -14,7 +14,7 @@ export const Quotes = () => {
     <div className={style.quoteContainer}>
       <div className={style.quoteText}>{QUOTES[currentIndex]}</div>
       <div  className={style.buttonContainer}>
-        <Button variants="default" onClick={handlePrevClick}>Преведущая</Button>
+        <Button variants="default" onClick={handlePrevClick}>Предыдущая</Button>
         <Button variants="default" onClick={handleNextClick}>Следующая</Button>
       </div>
     </div>

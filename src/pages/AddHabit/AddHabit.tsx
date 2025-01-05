@@ -31,7 +31,7 @@ export const AddHabit = () => {
         <form className={style.form} onSubmit={(event) => submitHandler(event)}>
           <p>Введите привычку</p>
           <input type="text" />
-          <p>Цель</p>
+          <p>Ваша цель</p>
           <textarea cols={50} rows={10} />
           <Button variants="default">Создать привычку</Button>
         </form>
