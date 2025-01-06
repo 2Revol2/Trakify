@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import { Title } from "../../components/Title/Title";
 import style from "./AllHabit.module.scss";
-import { Button } from "../../components/Button/Button";
-import { EditHabitInput } from "../../components/EditHabitInput/EditHabitInput";
-import { useNavigate } from "react-router";
 import { HabitsType } from "../../Shared/Types";
-import { DaysStreak } from "../../components/DaysStreak/DaysStreak";
+import { HabitItem } from "../../components/HabitItem/HabitItem";
 export const AllHabit = () => {
   const [habits, setHabits] = useState<HabitsType[]>([]);
   const [editIndex, setEditIndex] = useState<number | null>(null);
@@ -53,7 +50,7 @@ export const AllHabit = () => {
     const habitsData: HabitsType[] = JSON.parse(
       localStorage.getItem("habits") || "[]"
     );
-    const today = new Date().toLocaleDateString("en-CA"); 
+    const today = new Date().toLocaleDateString("en-CA");
     const updatedHabits = habitsData.map((habit: HabitsType) => {
       if (habit.name === habitName) {
         if (habit.lastDay !== today) {
@@ -71,10 +68,8 @@ export const AllHabit = () => {
       return habit;
     });
     localStorage.setItem("habits", JSON.stringify(updatedHabits));
-    setHabits(updatedHabits)
+    setHabits(updatedHabits);
   }
-  const navigate = useNavigate();
-
   return (
     <div className={style.wrapper}>
       <div>
@@ -88,95 +83,18 @@ export const AllHabit = () => {
         {habits.map((habit, index) => {
           const isEditing = edit && editIndex === index;
           return (
-            <div key={index} className={style.habitWrapper}>
-              <div className={style.habitHeader}>
-                <div className={style.habitFlex}>
-                  <div>
-                    <p className={style.description}>Привычка</p>
-                    {isEditing ? (
-                      <EditHabitInput
-                        variants="editHabitName"
-                        value={editHabit.name}
-                        onChange={(event) =>
-                          setEditHabit({
-                            ...editHabit,
-                            name: event.target.value,
-                          })
-                        }
-                      />
-                    ) : (
-                      <h3 className={style.habitName}>{habit.name}</h3>
-                    )}
-                  </div>
-                  {isEditing ? (
-                    ""
-                  ) : (
-                    <Button
-                      variants="details"
-                      onClick={() => navigate(`/habit/${habit.name}`)}
-                    >
-                      Детали
-                    </Button>
-                  )}
-                </div>
-                <p className={style.description}>Цель</p>
-                {isEditing ? (
-                  <EditHabitInput
-                    variants="editHabitMotivation"
-                    value={editHabit.motivation}
-                    onChange={(event) =>
-                      setEditHabit({
-                        ...editHabit,
-                        motivation: event.target.value,
-                      })
-                    }
-                  />
-                ) : (
-                  <p className={style.habitMotivation}>{habit.motivation}</p>
-                )}
-              </div>
-              <p className={style.description}>
-              Дни выполнения (можно отметить только один раз в день)
-              </p>
-              <DaysStreak>{habit.streak}</DaysStreak>
-              <div className={style.habitBtn}>
-                {isEditing ? (
-                  <Button variants="default" onClick={saveEditHabitHandler}>
-                    Сохранить
-                  </Button>
-                ) : (
-                  <Button
-                    variants="default"
-                    onClick={() => dayStreak(habit.name)}
-                  >
-                    Отметить
-                  </Button>
-                )}
-                {isEditing ? (
-                  <Button
-                    variants="edit"
-                    onClick={() => editHabitHandler(index)}
-                  >
-                    Отмена
-                  </Button>
-                ) : (
-                  <Button
-                    variants="edit"
-                    onClick={() => editHabitHandler(index)}
-                  >
-                    Редактировать
-                  </Button>
-                )}
-                {isEditing ? null : (
-                  <Button
-                    variants="delete"
-                    onClick={() => deleteHandler(habit)}
-                  >
-                    Удалить
-                  </Button>
-                )}
-              </div>
-            </div>
+            <HabitItem
+              key={habit.name}
+              habit={habit}
+              index={index}
+              isEditing={isEditing}
+              editHabit={editHabit}
+              editHabitHandler={editHabitHandler}
+              saveEditHabitHandler={saveEditHabitHandler}
+              deleteHandler={deleteHandler}
+              dayStreak={dayStreak}
+              setEditHabit={setEditHabit}
+            />
           );
         })}
       </div>
