@@ -7,7 +7,7 @@ import { AddHabit } from "./pages/AddHabit/AddHabit";
 import { AllHabit } from "./pages/AllHabit/AllHabit";
 import { HabitDetails } from "./pages/HabitDetails/HabitDetails";
 import { useState } from "react";
-
+import { Profile } from "./pages/Profile/Profile";
 export const App = () => {
   const [isAuth, setIsAuth] = useState<boolean>(false);
   return (
@@ -17,7 +17,7 @@ export const App = () => {
         <Routes>
           <Route path="/add-habbit" element={<AddHabit />} />
           <Route path="/all-habbit" element={<AllHabit />} />
-          <Route path="/profile" />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/habit/:name" element={<HabitDetails />} />
           <Route path="/" element={<Welcome />} />
           <Route path="/login" element={<Navigate to="/add-habbit" />} />

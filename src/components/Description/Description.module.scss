@@ -1,0 +1,12 @@
+@use '../../styles/variables.scss';
+.subtitles {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.625rem;
+  color: variables.$primary-color;
+  text-transform: uppercase;
+  transition: color 0.2s ease-in-out;
+  &:hover {
+    color: variables.$primary-hover;
+  }
+}

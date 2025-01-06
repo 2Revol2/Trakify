@@ -5,7 +5,7 @@ import { Title } from "../../components/Title/Title";
 import { HabitCalendar } from "../../components/Calendar/HabitCalendar";
 import { DaysStreak } from "../../components/DaysStreak/DaysStreak";
 import { Quotes } from "../../components/Quotes/Quotes";
-
+import { Description } from "../../components/Description/Description";
 export const HabitDetails = () => {
   const { name } = useParams();
   const habitsData: HabitsType[] = JSON.parse(
@@ -23,25 +23,25 @@ export const HabitDetails = () => {
         {/* 1 */}
         <div>
           <div className={style.calendarBlock}>
-            <p className={style.subtitles}>Календарь выполнения</p>
+            <Description>Календарь выполнения</Description>
             <HabitCalendar completedDays={completedDays} />
           </div>
         </div>
         {/* 2 */}
         <div>
           <div className={style.habitInfo}>
-            <p className={style.subtitles}>Дни выполнения</p>
+            <Description>Дни выполнения</Description>
             <DaysStreak>{habit?.streak}</DaysStreak>
           </div>
           <div className={style.habitInfo}>
-            <p className={style.subtitles}>Цель</p>
+            <Description>Цель</Description>
             <p className={style.motivation}>{habit?.motivation}</p>
           </div>
         </div>
         {/* 3 */}
         <div className={style.moreInfo}>
           <div>
-            <p className={style.subtitles}>Мотивационные цитаты</p>
+            <Description>Мотивационные цитаты</Description>
             <p><Quotes/></p>
           </div>
         </div>
