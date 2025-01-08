@@ -8,6 +8,7 @@ import { AllHabit } from "./pages/AllHabit/AllHabit";
 import { HabitDetails } from "./pages/HabitDetails/HabitDetails";
 import { useState } from "react";
 import { Profile } from "./pages/Profile/Profile";
+import { paths } from "./shared/config";
 export const App = () => {
   const [isAuth, setIsAuth] = useState<boolean>(false);
   return (
@@ -15,17 +16,17 @@ export const App = () => {
       <Navbar />
       {isAuth ? (
         <Routes>
-          <Route path="/add-habbit" element={<AddHabit />} />
-          <Route path="/all-habbit" element={<AllHabit />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/habit/:name" element={<HabitDetails />} />
-          <Route path="/" element={<Welcome />} />
-          <Route path="/login" element={<Navigate to="/add-habbit" />} />
+          <Route path={paths.ADD_HABIT} element={<AddHabit />} />
+          <Route path={paths.ALL_HABIT} element={<AllHabit />} />
+          <Route path={paths.PROFILE} element={<Profile />} />
+          <Route path={paths.HABIT_DETAILS} element={<HabitDetails />} />
+          <Route path={paths.MAIN} element={<Welcome />} />
+          <Route path={paths.LOGIN} element={<Navigate to="/add-habbit" />} />
         </Routes>
       ) : (
         <Routes>
-          <Route path="/" element={<Welcome />} />
-          <Route path="/registration" element={<Registration />} />
+          <Route path={paths.MAIN} element={<Welcome />} />
+          <Route path={paths.REGISTRATION} element={<Registration />} />
           <Route path="*" element={<Login setIsAuth={setIsAuth} />} />
         </Routes>
       )}

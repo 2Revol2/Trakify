@@ -1,11 +1,12 @@
 import style from "./Login.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, Navigate } from "react-router";
-import { USER_INFO } from "../../../Shared/Consts";
+import { USER_INFO } from "../../../shared/Consts";
 import { Title } from "../../../components/Title/Title";
 import { Button } from "../../../components/Button/Button";
 import { AuthInput } from "../../../components/AuthInput/AuthInput";
 import { useState } from "react";
+import { paths } from "../../../shared/config";
 type Props = {
   setIsAuth: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -28,10 +29,10 @@ export const Login = ({ setIsAuth }: Props) => {
   });
 
   const onSubmit: SubmitHandler<loginForm> = async (data) => {
-    setIsAuth(true)
-    setIsLocaleAuth(true)
+    setIsAuth(true);
+    setIsLocaleAuth(true);
     const { email, password } = data;
- 
+
     try {
       const response = await fetch(USER_INFO);
       const users = await response.json();
@@ -41,7 +42,6 @@ export const Login = ({ setIsAuth }: Props) => {
       );
       if (user) {
         console.log("Пользователь найден", user);
-        
       } else {
         console.log("Неверный логин или пароль");
       }
@@ -79,11 +79,11 @@ export const Login = ({ setIsAuth }: Props) => {
               min: 5,
             }}
           />
-          <Link className={style.link} to="/registration">
+          <Link className={style.link} to={paths.REGISTRATION}>
             Создать аккаунт
           </Link>
           <Button variants="default">Ввойти</Button>
-          {isAuth && <Navigate to={'/add-habbit'}/>}
+          {isAuth && <Navigate to={paths.ADD_HABIT} />}
         </form>
       </div>
     </div>

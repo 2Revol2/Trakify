@@ -1,4 +1,4 @@
-import { HabitsType } from "../../Shared/Types";
+import { HabitsType } from "../../shared/Types";
 import { Button } from "../Button/Button";
 import { EditHabitInput } from "../EditHabitInput/EditHabitInput";
 import { DaysStreak } from "../DaysStreak/DaysStreak";

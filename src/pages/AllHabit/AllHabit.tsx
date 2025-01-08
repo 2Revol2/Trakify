@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Title } from "../../components/Title/Title";
 import style from "./AllHabit.module.scss";
-import { HabitsType } from "../../Shared/Types";
+import { HabitsType } from "../../shared/Types";
 import { HabitItem } from "../../components/HabitItem/HabitItem";
 export const AllHabit = () => {
   const [habits, setHabits] = useState<HabitsType[]>([]);

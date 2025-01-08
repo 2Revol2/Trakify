@@ -1,7 +1,7 @@
 import { Title } from "../../../components/Title/Title";
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./Registration.module.scss";
-import { USER_INFO } from "../../../Shared/Consts";
+import { USER_INFO } from "../../../shared/Consts";
 import { Button } from "../../../components/Button/Button";
 import { AuthInput } from "../../../components/AuthInput/AuthInput";
 type loginForm = {
@@ -24,12 +24,10 @@ export const Registration = () => {
           method: "POST",
           body: JSON.stringify(dataToSend),
         });
+      } else {
+        alert("Пароли не совпадают");
       }
-      else {
-        alert('Пароли не совпадают')
-      }
-    } catch (error) {
-    }
+    } catch (error) {}
   };
   return (
     <div className={style.wrapper}>

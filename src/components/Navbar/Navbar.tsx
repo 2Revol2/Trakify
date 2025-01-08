@@ -1,12 +1,13 @@
 import style from "./Navbar.module.scss";
 import userIcon from "../../assets/user.png";
 import { Link, NavLink } from "react-router";
+import { paths } from "../../shared/config";
 export const Navbar = () => {
   return (
     <header className={style.header}>
       <nav className={style.nav}>
         {/* Заголовок перекидывает на главную страницу */}
-        <Link to={"/"} className={style.title}>
+        <Link to={paths.MAIN} className={style.title}>
           Trakify
         </Link>
         <div className={style.navElement}>
@@ -16,7 +17,7 @@ export const Navbar = () => {
                 className={({ isActive }) =>
                   isActive ? `${style.active}` : `${style.link}`
                 }
-                to={"/add-habbit"}
+                to={paths.ADD_HABIT}
               >
                 Добавить привычку
               </NavLink>
@@ -26,14 +27,14 @@ export const Navbar = () => {
                 className={({ isActive }) =>
                   isActive ? `${style.active}` : `${style.link}`
                 }
-                to={"/all-habbit"}
+                to={paths.ALL_HABIT}
               >
                 Список привычек{" "}
               </NavLink>
             </li>
           </ul>
         </div>
-        <Link to={"/profile"} className={style.userProfile}>
+        <Link to={paths.PROFILE} className={style.userProfile}>
           <img src={userIcon} alt="" />
         </Link>
       </nav>

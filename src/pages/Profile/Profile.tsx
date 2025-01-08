@@ -1,6 +1,6 @@
 import style from "./Profile.module.scss";
 import { Title } from "../../components/Title/Title";
-import { HabitsType } from "../../Shared/Types";
+import { HabitsType } from "../../shared/Types";
 import { DaysStreak } from "../../components/DaysStreak/DaysStreak";
 import { useNavigate } from "react-router";
 import { Description } from "../../components/Description/Description";
@@ -23,9 +23,9 @@ export const Profile = () => {
             <p>test@test.com</p>
           </div>
         </div>
-        
+
         <div className={style.habitWrapper}>
-        <Description>Привычки</Description>
+          <Description>Привычки</Description>
           {data.map((habit, index) => {
             return (
               <div
