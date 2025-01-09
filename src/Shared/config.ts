@@ -1,4 +1,4 @@
-export const enum paths {
+export enum paths {
   MAIN = "/",
   ADD_HABIT = "/add-habbit",
   ALL_HABIT = "/all-habbit",
